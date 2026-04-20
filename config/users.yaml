@@ -1,0 +1,46 @@
+organization:
+  github_owner: kinship-demo
+  aws:
+    identity_store_id: d-9067example
+    sso_instance_arn: arn:aws:sso:::instance/ssoins-example
+
+accounts:
+  dev: "111111111111"
+  prod: "222222222222"
+
+teams:
+  - name: backend
+  - name: frontend
+  - name: billing
+
+groups:
+  - name: developers
+    accounts: [dev]
+    permission_set: DeveloperAccess
+  - name: operators
+    accounts: [dev, prod]
+    permission_set: ReadOnly
+  - name: billing
+    accounts: [prod]
+    permission_set: BillingViewer
+
+users:
+  - name: alice
+    email: alice@example.com
+    github_handle: alice
+    github_team: backend
+    aws_account: dev
+    aws_group: developers
+  - name: bob
+    email: bob@example.com
+    github_handle: bob
+    github_team: frontend
+    aws_account: prod
+    aws_group: operators
+  - name: carol
+    email: carol@example.com
+    github_handle: carol
+    github_team: billing
+    github_role: admin
+    aws_account: prod
+    aws_group: billing

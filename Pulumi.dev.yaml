@@ -1,0 +1,4 @@
+config:
+  aws:region: us-east-1
+  user-management:env: dev
+  user-management:configFile: config/users.yaml

@@ -1,0 +1,15 @@
+node_modules/
+bin/
+*.log
+*.js
+*.js.map
+!jest.config.js
+.DS_Store
+.idea/
+.vscode/
+package-lock.json
+yarn.lock
+Pulumi.*.local.yaml
+.env
+.env.*
+coverage/

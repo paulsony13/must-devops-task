@@ -1,0 +1,4 @@
+name: user-management
+runtime: nodejs
+description: Pulumi project managing GitHub org membership and AWS IAM Identity Center users
+main: index.ts

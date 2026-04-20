@@ -1,0 +1,35 @@
+organization:
+  github_owner: my-org
+  aws:
+    identity_store_id: d-1234567890
+    sso_instance_arn: arn:aws:sso:::instance/ssoins-example
+
+accounts:
+  dev: "111111111111"
+  prod: "222222222222"
+
+teams:
+  - name: backend
+  - name: frontend
+
+groups:
+  - name: developers
+    accounts: [dev]
+    permission_set: DeveloperAccess
+  - name: operators
+    accounts: [dev, prod]
+    permission_set: ReadOnly
+
+users:
+  - name: alice
+    email: alice@example.com
+    github_handle: alice
+    github_team: backend
+    aws_account: dev
+    aws_group: developers
+  - name: bob
+    email: bob@example.com
+    github_handle: bob
+    github_team: frontend
+    aws_account: prod
+    aws_group: operators
