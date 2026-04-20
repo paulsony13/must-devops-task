@@ -1,5 +1,5 @@
 organization:
-  github_owner: kinship-demo
+  github_owner: my-org
   aws:
     identity_store_id: d-9067example
     sso_instance_arn: arn:aws:sso:::instance/ssoins-example

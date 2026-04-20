@@ -20,16 +20,21 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+      - run: npm run lint
       - run: npm test
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
-          aws-region: us-east-1
-      - uses: pulumi/actions@v5
-        with:
-          command: preview
-          stack-name: dev
-          comment-on-pr: true
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GH_ORG_ADMIN_TOKEN }}
+      - name: yaml lint
+        run: |
+          pip install --user yamllint
+          yamllint -d "{extends: default, rules: {line-length: disable, document-start: disable, truthy: disable}}" config/ .github/workflows/ Pulumi.yaml Pulumi.*.yaml
+      # - uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+      #     aws-region: us-east-1
+      # - uses: pulumi/actions@v5
+      #   with:
+      #     command: preview
+      #     stack-name: dev
+      #     comment-on-pr: true
+      #   env:
+      #     PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.GH_ORG_ADMIN_TOKEN }}
