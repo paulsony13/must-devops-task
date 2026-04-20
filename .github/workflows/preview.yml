@@ -20,6 +20,7 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+      - run: npm run lint
       - run: npm test
       - name: yaml lint
         run: |
